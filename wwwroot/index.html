@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Special Numbers</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Select Special Number Type</h2>
+    <select id="type">
+        <option value="prime">Prime</option>
+        <option value="fibonacci">Fibonacci</option>
+        <option value="perfectsquare">Perfect Square</option>
+        <option value="perfect">Perfect Number</option>
+        <option value="abundant">Abundant Number</option>
+        <option value="deficient">Deficient Number</option>
+        <option value="Narcissitic">Narcissitic Number</option>
+        <option value="Palandrom">Palandrom Number</option>
+    </select>
+
+    <h3>Enter Range:</h3>
+    From: <input type="number" id="start">
+    To: <input type="number" id="end">
+    <button id="getNumbers">Get Numbers</button>
+
+    <h3>Output:</h3>
+    <div id="output"></div>
+
+    <script>
+        $("#getNumbers").click(function () {
+            var type = $("#type").val();
+            var start = $("#start").val();
+            var end = $("#end").val();
+
+            $.get(`http://localhost:5000/specialnumbers?type=${type}&start=${start}&end=${end}`, function (data) {
+                $("#output").html(data.join(", "));
+            });
+        });
+    </script>
+</body>
+</html>
